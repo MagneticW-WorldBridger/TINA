@@ -104,48 +104,82 @@
 }
 
 .control-tray {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
-  display: inline-flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 8px;
-  padding-bottom: 18px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  opacity: 0;
+  transition: all 0.5s ease;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 40px;
+  overflow: visible;
 
-  .disabled .action-button,
-  .action-button.disabled {
-    background: rgba(0, 0, 0, 0);
-    border: 1px solid var(--Neutral-30, #404547);
-    color: var(--Neutral-30);
+  &.connected {
+    opacity: 1;
+    pointer-events: auto;
   }
 
-  .connection-container {
+  .action-button {
+    width: 45px;
+    height: 45px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 4px;
-
-    .connection-button-container {
-      border-radius: 27px;
-      border: 1px solid var(--Neutral-30);
-      background: var(--Neutral-5);
-      padding: 10px;
+    justify-content: center;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    
+    .material-symbols-outlined {
+      font-size: 24px;
+      line-height: 1;
     }
 
-    .text-indicator {
-      font-size: 11px;
-      color: var(--Blue-500);
-      user-select: none;
-    }
-
-    &:not(.connected) {
-      .text-indicator {
-        opacity: 0;
+    &.mic-button {
+      background: var(--accent-red);
+      color: white;
+      margin: 10px;
+      
+      &:before {
+        position: absolute;
+        z-index: -1;
+        top: calc(var(--volume) * -1);
+        left: calc(var(--volume) * -1);
+        content: "";
+        opacity: 0.35;
+        background-color: var(--Red-500);
+        width: calc(100% + var(--volume) * 2);
+        height: calc(100% + var(--volume) * 2);
+        border-radius: 50%;
+        transition: all 0.02s ease-in-out;
       }
     }
+
+    &.connect-toggle {
+      background: var(--Blue-500);
+      color: white;
+    }
+  }
+
+  .actions-nav {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0 10px;
+  }
+
+  .text-indicator {
+    display: none;
   }
 }
 

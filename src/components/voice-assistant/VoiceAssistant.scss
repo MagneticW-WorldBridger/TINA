@@ -1,0 +1,65 @@
+.voice-assistant {
+  position: fixed;
+  transition: all 0.5s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  // Posición inicial
+  bottom: 20px;
+  right: 20px;
+
+  &.connected {
+    bottom: 160px; // Sube más para dar espacio al control-tray
+  }
+
+  .assistant-button {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    padding: 0;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+
+    &.connected {
+      width: 120px;   // Más grande cuando está conectado
+      height: 120px;
+      
+      img {
+        filter: grayscale(0%);
+      }
+    }
+  }
+
+  .pulse-container {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    scale: 1.5;
+    margin-top: 10px;
+
+    &.connected {
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}

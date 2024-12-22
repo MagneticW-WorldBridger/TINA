@@ -21,7 +21,7 @@ import SidePanel from "./components/side-panel/SidePanel";
 import { Altair } from "./components/altair/Altair";
 import ControlTray from "./components/control-tray/ControlTray";
 import cn from "classnames";
-import { ChatBubble } from './components/chat/ChatBubble';
+import { VoiceAssistant } from './components/voice-assistant/VoiceAssistant';
 
 const API_KEY = process.env.REACT_APP_GEMINI_API_KEY as string;
 if (typeof API_KEY !== "string") {
@@ -66,7 +66,7 @@ function App() {
             </ControlTray>
           </main>
         </div>
-        <ChatBubble />
+        <VoiceAssistant />
       </LiveAPIProvider>
     </div>
   );
