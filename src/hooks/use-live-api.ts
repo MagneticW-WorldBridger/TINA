@@ -74,12 +74,16 @@ export function useLiveAPI({
   }, [client]);
 
   const connect = useCallback(async () => {
-    console.log(config);
+    console.log("Starting connection attempt");
     if (!config) {
+      console.error("No config found");
       throw new Error("config has not been set");
     }
+    console.log("Disconnecting previous...");
     client.disconnect();
+    console.log("Attempting connection...");
     await client.connect(config);
+    console.log("Connection successful");
     setConnected(true);
   }, [client, setConnected, config]);
 
